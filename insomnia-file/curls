@@ -1,0 +1,101 @@
+//session
+curl --request POST \
+  --url http://localhost:3333/sessions \
+  --header 'content-type: application/json' \
+  --data '{
+	"email": "leo@hotmail.com",
+	"password": "123456"
+}'
+
+//profile
+curl --request GET \
+  --url http://localhost:3333/providers \
+  --header 'authorization: Bearer 123'
+
+curl --request GET \
+--url http://localhost:3333/profile \
+--header 'authorization: Bearer 123'
+
+curl --request PUT \
+  --url http://localhost:3333/profile \
+  --header 'authorization: Bearer 123' \
+  --header 'content-type: application/json' \
+  --data '{
+	"name": "Leo",
+	"nickname": "leozinho das m",
+	"email": "leo@hotmail.com",
+	"old_password": "123456",
+	"password": "123456",
+	"password_confirmation": "123456"
+}'
+
+curl --request POST \
+  --url http://localhost:3333/password/forgot \
+  --header 'content-type: application/json' \
+  --data '{
+	"email": "leo@hotmail.com"
+}'
+
+curl --request POST \
+  --url http://localhost:3333/password/reset \
+  --header 'content-type: application/json' \
+  --data '{
+	"password": "123123",
+	"password_confirmation": "123123",
+	"token": "89b54fe9-5ea5-4f9c-ab2f-0b2dc352e7c2"
+} '
+
+curl --request PATCH \
+  --url http://localhost:3333/users/avatar \
+  --header 'authorization: Bearer 123' \
+  --header 'content-type: multipart/form-data; boundary=---011000010111000001101001' \
+  --form avatar=
+
+  curl --request POST \
+  --url http://localhost:3333/users \
+  --header 'content-type: application/json' \
+  --data '{
+	"name": "Leo 2",
+	"nickname": "Leozinho 2",
+	"email": "leo2@hotmail.com",
+	"password": "123456"
+}'
+
+//appointments
+curl --request GET \
+  --url http://localhost:3333/appointments/me \
+  --header 'authorization: Bearer 123' \
+  --header 'content-type: application/json' \
+  --data '{
+	"year": 2020,
+	"month": 5,
+	"day": 20
+}'
+
+curl --request GET \
+  --url http://localhost:3333/providers/ac8ff7a1-17dd-499b-9e67-0e981827740c/month-availability \
+  --header 'authorization: Bearer 123' \
+  --header 'content-type: application/json' \
+  --data '{
+	"month": 4,
+	"year": 2020
+}'
+
+curl --request GET \
+  --url http://localhost:3333/providers/ac8ff7a1-17dd-499b-9e67-0e981827740c/day-availability \
+  --header 'authorization: Bearer 123' \
+  --header 'content-type: application/json' \
+  --data '{
+	"day": 20,
+	"month": 5,
+	"year": 2020
+}'
+
+curl --request POST \
+  --url http://localhost:3333/appointments \
+  --header 'authorization: Bearer 123' \
+  --header 'content-type: application/json' \
+  --data '{
+	"provider_id": "ac8ff7a1-17dd-499b-9e67-0e981827740c",
+	"date": "2020-05-20 10:00:00"
+}'
