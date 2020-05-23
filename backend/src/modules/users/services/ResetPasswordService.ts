@@ -50,8 +50,3 @@ class ResetPasswordService {
 }
 
 export default ResetPasswordService;
-
-// Criar hash
-// Expirar após 2 horas de sua geração
-// User token inexistente
-// User inexistente
