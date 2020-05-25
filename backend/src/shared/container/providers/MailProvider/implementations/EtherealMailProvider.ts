@@ -27,7 +27,12 @@ export default class EtherealMailProvider implements IMailProvider {
     });
   }
 
-  public async sendMail({ to, from, subject }: ISendMailDTO): Promise<void> {
+  public async sendMail({
+    to,
+    from,
+    subject,
+    templateData,
+  }: ISendMailDTO): Promise<void> {
     const message = await this.cliente.sendMail({
       from: {
         name: from?.name || 'Equipe GoBarber',
@@ -38,7 +43,7 @@ export default class EtherealMailProvider implements IMailProvider {
         address: to.email,
       },
       subject,
-      text: 'Test',
+      html: await this.mailTemplateProvider.parse(templateData),
     });
 
     console.log('Message sent: %s', message.messageId);
