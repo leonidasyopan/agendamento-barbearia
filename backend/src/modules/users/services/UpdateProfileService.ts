@@ -69,5 +69,3 @@ class UpdateProfileService {
 }
 
 export default UpdateProfileService;
-
-// 11min30segundos
